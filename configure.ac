@@ -9,6 +9,7 @@ AM_INIT_AUTOMAKE([1.11 foreign])
 AC_CONFIG_SRCDIR([src/base64.h])
 AC_CONFIG_FILES([Makefile
                  src/Makefile
+                 tests/Makefile
                  doc/Makefile])
 
 AC_PROG_CC
