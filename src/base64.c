@@ -308,9 +308,10 @@ base64_enclen(size_t orig_len)
 {
         size_t   len = 0;
 
-        len = (orig_len * 4) / 3;
-        len += (len % 4);
-        return len;
+        len = orig_len / 3;
+        if (0 != (orig_len % 3))
+                len++;
+        return len * 4;
 }
 
 
