@@ -118,7 +118,8 @@ static const char Pad64 = '=';
    */
 
 int
-base64_encode(uint8_t *src, size_t srclength, char *target, size_t targsize)
+base64_encode(const uint8_t *src, size_t srclength, char *target,
+              size_t targsize)
 {
 	size_t datalength = 0;
 	unsigned char input[3];

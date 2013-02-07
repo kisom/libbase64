@@ -51,8 +51,8 @@
 #include <stdlib.h>
 
 
-int      b64_encode(const uint8_t *, size_t, char *, size_t);
-int      b64_decode(const char *, const uint8_t*, size_t);
+int      base64_encode(const uint8_t *, size_t, char *, size_t);
+int      base64_decode(const char *, uint8_t*, size_t);
 size_t   base64_enclen(size_t);
 size_t   base64_declen(size_t);
 char    *base64_lib_version(void);
