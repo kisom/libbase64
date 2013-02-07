@@ -8,6 +8,19 @@ been updated to C99, and uses the C99 standard integer type uint8_t.
 AUTHOR
 Kyle Isom <kyle@tyrfingr.is>
 
-
 LICENSE
 See the LICENSE file for details.
+
+UNIT TESTS
+The following unit tests ship with the library:
+
+* A version check to ensure the library being tested matches what is
+  expected, and that the version function works as expected.
+* An encoding length test that validates the base64_enclen function.
+* A decoding length test that validates the base64_declen function.
+* An encoding test that tests increases length of a string with the
+  expected output string. This function builds increasingly longer
+  strings of A's (i.e. 'A', 'AA', etc...) and validates against an
+  array of expected base64 strings.
+* A decoding test that ensures the that the previous test vectors
+  decode to the expected sequence.
