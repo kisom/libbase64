@@ -7,7 +7,7 @@ rm core*
 echo "[+] performing autobuild" ;          \
         git clean -Xdf                  && \
         autoreconf -i                   && \
-        ./configure CC=clang            && \
+        ./configure                     && \
         make clean                      && \
         make                            && \
         make check
