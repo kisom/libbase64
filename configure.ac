@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 AC_INIT([libbase64],
-         [0.1.0],
+         [1.0.0],
          [kyle@tyrfingr.is],
          [],
          [https://github.com/kisom/libbase64])
