@@ -50,6 +50,8 @@
 
 #include "base64.h"
 
+
+static const char libversion[] = PACKAGE_VERSION;
 static const char Base64[] =
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 static const char Pad64 = '=';
@@ -333,9 +335,9 @@ base64_declen(size_t orig_len)
 /*
  * Return the package version.
  */
-char *
+const char *
 base64_lib_version()
 {
-        return PACKAGE_VERSION;
+        return libversion;
 }
 
