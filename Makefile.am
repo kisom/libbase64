@@ -1,1 +1,3 @@
-SUBDIRS := src doc
+SUBDIRS := doc src tests
+
+TESTS := tests/base64_test
