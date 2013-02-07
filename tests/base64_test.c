@@ -27,6 +27,8 @@
 
 #include "base64.h"
 
+
+void test_base64_lib_version(void);
 void test_base64_enclen(void);
 void test_base64_declen(void);
 void test_base64_encode(void);
@@ -80,6 +82,10 @@ main(void)
         if (NULL == tsuite)
                 fireball();
 
+        if (NULL == CU_add_test(tsuite, "base64 library version check",
+                                test_base64_lib_version))
+          fireball();
+
         if (NULL == CU_add_test(tsuite, "base64 encoding length",
                                 test_base64_enclen))
                 fireball();
@@ -103,6 +109,17 @@ main(void)
 
         CU_cleanup_registry();
         return fails;
+}
+
+
+void
+test_base64_lib_version()
+{
+          char *version = NULL;
+          
+          version = (char *)base64_lib_version();
+          CU_ASSERT(NULL != version);
+          CU_ASSERT(0 == strcmp(version, PACKAGE_VERSION));
 }
 
 
