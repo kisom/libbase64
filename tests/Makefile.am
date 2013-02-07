@@ -1,4 +1,5 @@
 AM_CFLAGS = -I/usr/local/include -I../src
+AM_CFLAGS += -D_XOPEN_SOURCE=700 -D_BSD_SOURCE -Werror -Wall
 AM_LDFLAGS = -L/usr/local/include
 
 check_PROGRAMS = base64_test

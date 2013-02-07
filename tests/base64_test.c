@@ -29,6 +29,7 @@
 
 void test_base64_enclen(void);
 void test_base64_declen(void);
+void test_base64_encode(void);
 
 
 /*
@@ -84,6 +85,10 @@ main(void)
 
         if (NULL == CU_add_test(tsuite, "base64 decoding length",
                                 test_base64_declen))
+                fireball();
+
+        if (NULL == CU_add_test(tsuite, "base64 encode",
+                                test_base64_encode))
                 fireball();
 
         CU_basic_set_mode(CU_BRM_VERBOSE);
@@ -273,5 +278,58 @@ test_base64_declen()
         for (i = 0; i < 1024; i++) {
                 CU_ASSERT(base64_declen(test_vec[i]) >= i);
                 CU_ASSERT((base64_declen(test_vec[i]) - i) < 3);
+        }
+}
+
+
+void
+test_base64_encode()
+{
+        char     testvec[][45] = {
+			"",
+			"QQ==",
+			"QUE=",
+			"QUFB",
+			"QUFBQQ==",
+			"QUFBQUE=",
+			"QUFBQUFB",
+			"QUFBQUFBQQ==",
+			"QUFBQUFBQUE=",
+			"QUFBQUFBQUFB",
+			"QUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQQ==",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE=",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB",
+			"QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQQ==",
+        };
+        uint8_t  testbuf[33];
+        char     base64_buf[45];
+        size_t   i;
+
+        for (i = 0; i < 32; i++) {
+                memset(base64_buf, 0x0, 45);
+                memset(testbuf, 0x0, 33);
+                memset(testbuf, 0x41, i);
+                CU_ASSERT(-1 != base64_encode(testbuf, i, base64_buf,
+                                              base64_enclen(i) + 1));
+                CU_ASSERT(strlen(testvec[i]) == strlen(base64_buf));
+                CU_ASSERT(0 == strcmp(testvec[i], base64_buf));
         }
 }
