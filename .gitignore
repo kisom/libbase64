@@ -1,0 +1,28 @@
+*.o
+*.a
+TAGS
+tags
+core*
+
+# C autoconf crap
+autom4te.cache
+*.in
+config.*
+compile
+*.m4
+configure
+depcomp
+*.info
+mdate-sh
+stamp-*
+texinfo.tex
+version.texi
+install-sh
+missing
+Makefile
+.deps
+
+# texinfo out
+doc/*.pdf
+doc/*.info
+doc/*.log

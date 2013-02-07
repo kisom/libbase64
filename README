@@ -1,0 +1,13 @@
+libbase64
+
+This is the OpenBSD base64 functions extracted to an external static library. It
+provides an easy way to include base64 encoding and decoding in your code. It has
+been updated to C99, and uses the C99 standard integer type uint8_t.
+
+
+AUTHOR
+Kyle Isom <kyle@tyrfingr.is>
+
+
+LICENSE
+See the LICENSE file for details.
