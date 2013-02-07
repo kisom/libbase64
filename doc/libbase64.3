@@ -6,24 +6,105 @@
 .Nd OpenBSD's base64 code extracted to a static library
 .Sh SYNOPSIS
 .In base64.h
+.Ft int
+.Fo base64_encode
+.Fa "const uint8_t *src"
+.Fa "size_t srclen"
+.Fa "char *dst"
+.Fa "size_t dstlen"
+.Fc
+.Fa int
+.Fo base64_decode
+.Fa "const char *src"
+.Fa "uint8_t *dst"
+.Fa "size_t dstlen"
+.Fc
+.Ft size_t
+.Fo base64_enclen
+.Fa "size_t len"
+.Fc
+.Ft size_t
+.Fo base64_declen
+.Fa "size_t len"
+.Fc
+.Ft "const char *"
+.Fo base64_lib_version
+.Fa void
+.Fc
 .Sh DESCRIPTION
-.\" .Sh RETURN VALUES
-.\" For sections 2, 3, & 9 only.
-.\" .Sh ENVIRONMENT
-.\" For sections 1, 6, 7, & 8 only.
-.\" .Sh FILES
-.\" .Sh EXIT STATUS
-.\" For sections 1, 6, & 8 only.
-.\" .Sh EXAMPLES
-.\" .Sh DIAGNOSTICS
-.\" For sections 1, 4, 6, 7, & 8 only.
-.\" .Sh ERRORS
-.\" For sections 2, 3, & 9 only.
-.\" .Sh SEE ALSO
+.Nm
+provides functions for base64 encoding and decoding. The
+.Nm base64_encode
+function takes arbtitrary binary data and a pre-allocated buffer to
+store the base64-encoded data in. The expected size of the buffer
+(sans a NULL byte) can be retrieved with the function
+.Nm base64_enclen .
+The destination size should be the value of
+.Nm base64_enclen(buflen)
+plus an extra NULL byte.
+.Nm base64_decode
+reverses the process; the length to the base64-encoded buffer is not
+required. The size of the destination buffer should be at least
+.Nm base64_declen(b64buflen) + 1 .
+The current version of the library can be retrieved with the
+.Nm base64_lib_version
+returns the current version string for the package.
+.Sh RETURN VALUES
+.Nm base64_encode
+and
+.Nm base64_decode
+return -1 on error, or the length of the stored data on success.
+.Nm base64_enclen
+returns the base64-encoded length of a base64-encoded buffer with a
+source buffer length of
+.Nm len ;
+.Nm base64_decode
+returns the maximum base64-decoded size of a source buffer of length
+.Nm len ,
+possibly two more bytes than actually required. The actual length of
+the buffer depends on the encoded data.
+.Nm base64_lib_version
+returns a pointer to a statically allocated buffer containing the
+version number. This pointer should not be freed.
+.Sh EXAMPLES
+A sample section of code doing base64 encoding might look like:
+.Bd -literal
+        uint8_t  msg[] = "Hello, world.";
+        char    *b64 = NULL;
+        size_t   b64len;
+
+        b64len = base64_enclen(strlen(msg));
+        b64 = malloc(b64len + 1);
+        if (NULL == b64)
+                return -1;
+        memset(b64, 0x0, b64len);
+
+        if (base64_encode(b64, b64len + 1, msg, strlen(msg)) != -1);
+                do_something(b64, b64len);
+        free(b64);
+.Ed
+Decoding is similar:
+.Bd -literal
+        char     msg[] = "SGVsbG8sIHdvcmxk";
+        uint8_t *buf = NULL;
+        size_t   buflen;
+
+        buflen = base64_declen(strlen(msg));
+        buf = malloc(buflen + 1);
+        if (NULL == buf)
+                return -1;
+        memset(buf, 0x0, buflen + 1);
+
+        if (base64_decode(msg, buf, buflen) != -1)
+                do_something(buf, buflen);
+        free(buf);
+.Ed
+.Sh ERRORS
+The most common cause for failure will be an incorrectly-sized buffer,
+or an invalid base64-encoded string.
 .Sh STANDARDS
 .Nm
 conforms to C99 and SUSv4.
-.\" .Sh HISTORY
 .Sh AUTHORS
 .Nm
 was written by

@@ -1,1 +1,1 @@
-dist_man2_MANS = base64.3
+dist_man3_MANS = libbase64.3
