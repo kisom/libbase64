@@ -1,9 +1,8 @@
 libbase64
 
-This is the OpenBSD base64 functions extracted to an external static library. It
-provides an easy way to include base64 encoding and decoding in your code. It has
-been updated to C99, and uses the C99 standard integer type uint8_t.
-
+This is the OpenBSD base64 functions extracted to an external static
+library. It provides an easy way to include base64 encoding and decoding
+in your code. It has been updated to the C99 standard.
 
 AUTHOR
 Kyle Isom <kyle@tyrfingr.is>
@@ -24,3 +23,5 @@ The following unit tests ship with the library:
   array of expected base64 strings.
 * A decoding test that ensures the that the previous test vectors
   decode to the expected sequence.
+
+The unit tests may be run with `make check`.
