@@ -26,3 +26,5 @@ Makefile
 doc/*.pdf
 doc/*.info
 doc/*.log
+
+tests/base64_test
