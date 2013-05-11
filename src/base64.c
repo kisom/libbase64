@@ -179,9 +179,9 @@ base64_encode(const uint8_t *src, size_t srclength, char *target,
 }
 
 /* skips all whitespace anywhere.
-   converts characters, four at a time, starting at (or after)
-   src from base - 64 numbers into three 8 bit bytes in the target area.
-   it returns the number of data bytes stored at the target, or -1 on error.
+ * converts characters, four at a time, starting at (or after)
+ * src from base - 64 numbers into three 8 bit bytes in the target area.
+ * it returns the number of data bytes stored at the target, or -1 on error.
  */
 
 int
@@ -303,8 +303,8 @@ base64_decode(const char *src, uint8_t *target, size_t targsize)
 
 
 /*
- * given the length of the original string, return the length of the base64-encoded
- * version.
+ * given the length of the original string, return the length of the base64-
+ * encoded version.
  */
 size_t
 base64_enclen(size_t orig_len)
@@ -319,8 +319,8 @@ base64_enclen(size_t orig_len)
 
 
 /*
- * given the length of the base64-encoded buffer, return the length of the decoded
- * version.
+ * given the length of the base64-encoded buffer, return the length of the
+ * decoded version.
  */
 size_t
 base64_declen(size_t orig_len)
