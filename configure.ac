@@ -6,6 +6,9 @@ AC_INIT([libbase64],
          [https://github.com/kisom/libbase64])
 AM_INIT_AUTOMAKE([1.11 foreign subdir-objects])
 
+LT_INIT
+AC_CONFIG_MACRO_DIR([m4])
+
 AC_CONFIG_SRCDIR([src/base64.h])
 AC_CONFIG_FILES([Makefile
                  src/Makefile
@@ -14,6 +17,5 @@ AC_CONFIG_FILES([Makefile
 
 AC_PROG_CC
 AC_PROG_INSTALL
-AC_PROG_RANLIB
 
 AC_OUTPUT
