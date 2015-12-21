@@ -1,5 +1,7 @@
 *.o
+*.lo
 *.a
+*.la
 *.dirstamp
 TAGS
 tags
@@ -22,6 +24,9 @@ install-sh
 missing
 Makefile
 .deps
+.libs
+libtool
+ltmain.sh
 
 # texinfo out
 doc/*.pdf
