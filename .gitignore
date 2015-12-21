@@ -1,5 +1,6 @@
 *.o
 *.a
+*.dirstamp
 TAGS
 tags
 core*
@@ -27,4 +28,8 @@ doc/*.pdf
 doc/*.info
 doc/*.log
 
+/test-driver
+/test-suite.log
 tests/base64_test
+tests/base64_test.log
+tests/base64_test.trs
