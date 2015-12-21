@@ -4,7 +4,7 @@ AC_INIT([libbase64],
          [kyle@tyrfingr.is],
          [],
          [https://github.com/kisom/libbase64])
-AM_INIT_AUTOMAKE([1.11 foreign])
+AM_INIT_AUTOMAKE([1.11 foreign subdir-objects])
 
 AC_CONFIG_SRCDIR([src/base64.h])
 AC_CONFIG_FILES([Makefile
