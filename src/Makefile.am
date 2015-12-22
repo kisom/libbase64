@@ -5,3 +5,6 @@ lib_LTLIBRARIES = libbase64.la
 libbase64_la_SOURCES = base64.c
 libbase64_la_LDFLAGS = -version-info 0:0:0
 include_HEADERS = base64.h
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libbase64-1.pc
