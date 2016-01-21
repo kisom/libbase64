@@ -13,5 +13,6 @@ addons:
     - autoconf
     - libtool
     - libcunit1-dev
+    - pkg-config
 script: autoreconf -i && ./configure && make && make check
 

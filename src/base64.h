@@ -50,6 +50,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 int              base64_encode(const uint8_t *, size_t, char *, size_t);
 int              base64_decode(const char *, uint8_t*, size_t);
@@ -57,5 +60,8 @@ size_t           base64_enclen(size_t);
 size_t           base64_declen(size_t);
 const char      *base64_lib_version(void);
 
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif
